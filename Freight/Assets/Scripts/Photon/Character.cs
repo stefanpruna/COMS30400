@@ -22,24 +22,29 @@ public class Character : MonoBehaviour
         // moving it.
         PhotonView view = Item.GetComponent<PhotonView>();
         view.TransferOwnership(PhotonNetwork.LocalPlayer);
+        Debug.Log(PhotonNetwork.LocalPlayer);
         Item.SetItemPickupConditions();
-
+        
+        GetComponent<PhotonView>().RPC("SetPickUpLocation", RpcTarget.All, Item);
         // Move to players pickup destination.
+       
+    }
+
+    public void SetPickUpLocation(PickUpable Item) 
+    {
         Item.transform.position = pickUpDestination.position;
 
         // Set the parent of the object to the pickupDestination so that it moves
         // with the player.
         Item.transform.parent = pickUpDestination;
     }
-
-
     public void PutDown(PickUpable Item) 
     {
 
         currentHeldItem = null;
         Item.ResetItemConditions(this);
 
-        Item.transform.parent = GameObject.Find("/Environment/Interactables").transform;
+        Item.transform.parent = GameObject.Find("/Environment/Interactables/Rocks").transform;
     }
 
    public virtual Vector3 Velocity() 

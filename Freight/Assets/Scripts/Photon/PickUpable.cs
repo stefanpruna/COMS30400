@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PickUpable : MonoBehaviour
+[DisallowMultipleComponent]
+[RequireComponent(typeof(PhotonView))]
+public class PickUpable :  MonoBehaviourPun
 {
     private Transform pickupDestination;
     public bool isPickedUp = false;
@@ -65,7 +67,7 @@ public class PickUpable : MonoBehaviour
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
         // Set velocity of box after it is putdown to the speed to the character moving it
-        GetComponent<Rigidbody>().velocity = character.Velocity() / 2;
+        //GetComponent<Rigidbody>().velocity = character.Velocity() / 2;
     }
 
     void Update() 
