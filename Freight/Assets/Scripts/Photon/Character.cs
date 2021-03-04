@@ -25,7 +25,12 @@ public class Character : MonoBehaviour
         Debug.Log(PhotonNetwork.LocalPlayer);
         Item.SetItemPickupConditions();
         
-        GetComponent<PhotonView>().RPC("SetPickUpLocation", RpcTarget.All, Item);
+       // Move to players pickup destination.
+        Item.transform.position = pickUpDestination.position;
+
+        // Set the parent of the object to the pickupDestination so that it moves
+        // with the player.
+        Item.transform.parent = pickUpDestination;
         // Move to players pickup destination.
        
     }

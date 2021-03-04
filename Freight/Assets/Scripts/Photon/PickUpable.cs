@@ -19,6 +19,7 @@ public class PickUpable :  MonoBehaviourPun
         if (!isPickedUp)
         {
             character.PickUp(this);
+            
         }
     }
 
