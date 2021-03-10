@@ -32,6 +32,8 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
 
     private void GetCurrentRoomPlayers()
     {
+        if (!PhotonNetwork.IsConnected) return;
+        if (PhotonNetwork.CurrentRoom == null || PhotonNetwork.CurrentRoom.Players == null) return;
         foreach (KeyValuePair<int, Photon.Realtime.Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
             AddPlayerListing(playerInfo.Value);
@@ -64,4 +66,14 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
             listings.RemoveAt(index);
         }
     }
+
+    public void StartGame()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Debug.Log("Starting Game");
+            PhotonNetwork.LoadLevel(1);
+        }
+    }
 }
+

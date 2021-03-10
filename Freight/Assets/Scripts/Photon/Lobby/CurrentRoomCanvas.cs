@@ -37,14 +37,4 @@ public class CurrentRoomCanvas : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-
-    public void StartGame()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            
-            Debug.Log("Starting Game");
-            PhotonNetwork.LoadLevel(1);
-        }
-    }
 }
