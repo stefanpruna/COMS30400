@@ -24,21 +24,21 @@ public class ItemInteract : MonoBehaviourPun
         if(!photonView.IsMine)
         {
             Destroy(this);
-        }    
-     
+        }
+
      character = GetComponent<Character>();
     }
 
     // Update is called once per frame
     void Update()
     {
-            
+
 
         // We can only interact with an item if the item is in reach and we are
         // not currently holding an item.
         bool canInteract = interactableInRange && !character.HasItem();
 
-        if(canInteract) 
+        if(canInteract)
         {
             Interactable newInteractable = interactableRock.GetComponent<Interactable>();
 
@@ -60,7 +60,7 @@ public class ItemInteract : MonoBehaviourPun
         }
         // Otherwise if we cant interact with anything but we were previously
         // interacting with something.
-        else if (currentInteractable != null) 
+        else if (currentInteractable != null)
         {
         
             // And if bring the mouse button up
@@ -91,7 +91,7 @@ public class ItemInteract : MonoBehaviourPun
     {
         text.SetActive(false);
     }
-    private void FixedUpdate() 
+    private void FixedUpdate()
     {
 
         interactables = GameObject.Find("Environment/Interactables");
